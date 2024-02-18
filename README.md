@@ -13,7 +13,7 @@ https://github.com/kev-nat/Pyrett/assets/97384711/3fbeb39c-480e-4ed1-84ae-72abc2
 https://github.com/kev-nat/Pyrett/assets/97384711/46e84977-5d70-49c1-9c2f-2b961f934188
 
 ### Pics 📸
-<img src= "https://github.com/kev-nat/Pyrett/assets/97384711/a003e25a-5c8b-42d2-8f56-a9a6e115fc8f" height="400" />
+<img src= "https://github.com/kev-nat/Pyrett/assets/97384711/a003e25a-5c8b-42d2-8f56-a9a6e115fc8f" height="388" />
 <img src = "https://github.com/kev-nat/Pyrett/assets/97384711/a6e967bb-be50-48ff-900b-70260dd696c9" width = "500" />
-<img src = "https://github.com/kev-nat/Pyrett/assets/97384711/22d802a5-ff18-4da6-b61f-4a64a26a33aa" width = "500" />
-<img src = "https://github.com/kev-nat/Pyrett/assets/97384711/a1149c83-6523-4f8d-b5ec-ceb2f2b3cb64" width = "500" />
+<img src = "https://github.com/kev-nat/Pyrett/assets/97384711/22d802a5-ff18-4da6-b61f-4a64a26a33aa" width = "400" />
+<img src = "https://github.com/kev-nat/Pyrett/assets/97384711/a1149c83-6523-4f8d-b5ec-ceb2f2b3cb64" width = "400" />
