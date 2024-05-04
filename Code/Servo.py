@@ -1,6 +1,7 @@
-import paho.mqtt.client as mqtt
-import time
 import numpy as np
+import paho.mqtt.client as mqtt
+import paho.mqtt.subscribe as sub
+import time
 from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import AngularServo
 from time import sleep
@@ -17,7 +18,8 @@ up_d.angle = angle_ud
 wake=""
 state = "no"
 e_x, e_y=0 , 60
-# a callback function
+
+# A callback function
 def on_message_coord(client, userdata, msg):
     global e_x,e_y
     coords = msg.payload.decode('utf-8')
@@ -46,12 +48,14 @@ client.message_callback_add('pyrett/turret', on_message_coord)
 client.message_callback_add('pyrett/fire_state', on_message_fire_state)
 client.message_callback_add('pyrett/wake', on_message_wake)
 client.connect('192.168.1.6', 1883)
-# start a new thread
+
+# Start a new thread
 client.loop_start()
 client.subscribe("pyrett/#")
-import paho.mqtt.subscribe as sub
+
 timer = 0
 active=False
+
 while True:
     if wake:
         print('wake')
@@ -60,33 +64,41 @@ while True:
             msg = sub.simple("pyrett/fire_state", hostname="192.168.1.6")
             fs = msg.payload.decode('utf-8')
             angle_lr += -1
+            
             if angle_lr < -90:
                 angle_lr = -89
             left_r.angle = angle_lr
+            
             if len(fs)>2:
                 print("break")
                 active = True
                 break
+            
             else:
                 timer +=0.05
                 print(timer)
+                
                 if timer > 10:
                     left_r.angle =45
                     up_d.angle =45
                     timer = 0
                     active = False
                     break
+                
     if not len(state)>2:
         e_x= 0
         e_y= 60
+        
         if active:
             timer +=0.05
             print(timer)
+            
             if timer > 7:
                 left_r.angle =45
                 up_d.angle =45
                 timer = 0
                 active = False
+                
     else:
         timer=0
 
@@ -122,5 +134,4 @@ while True:
     else:
         pass
     
-
     # print(angle_ud, angle_lr,e_x,e_y)

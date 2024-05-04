@@ -1,11 +1,10 @@
-from ultralytics import YOLO
-import cv2
-from ultralytics.utils.plotting import Annotator  # ultralytics.yolo.utils.plotting is deprecated
 import numpy as np
-
-import time
 import paho.mqtt.client as mqtt
+import cv2
+import time
 import random
+from ultralytics import YOLO
+from ultralytics.utils.plotting import Annotator
 
 model = YOLO('best.pt')
 cap = cv2.VideoCapture(1)
@@ -25,6 +24,7 @@ while True:
     for r in results:
         # print(len(r))
         annotator = Annotator(img)
+        
         if len(r)<1:
             state = "no"
             info = mqttClient.publish(
@@ -42,10 +42,11 @@ while True:
             )
             info.wait_for_publish()
             print(coord)
+            
         else:
             boxes = r.boxes.numpy()
+            
             for box in boxes:
-                
                 b = box.xyxy[0]  # get box coordinates in (top, left, bottom, right) format
                 c = box.xywh[0]
                 x=c[0]
@@ -60,6 +61,7 @@ while True:
                     payload=coord.encode('utf-8'),
                     qos=0,
                 )
+                
                 info.wait_for_publish()
                 state = "fire"
                 info = mqttClient.publish(
@@ -67,10 +69,10 @@ while True:
                     payload=state.encode('utf-8'),
                     qos=0,
                 )
+                
                 info.wait_for_publish()
                 print(state)
 
-    
     img = annotator.result()  
     cv2.imshow('YOLO V8 Detection', img)     
     if cv2.waitKey(1) & 0xFF == ord(' '):

@@ -1,11 +1,10 @@
-from ultralytics import YOLO
-import cv2
-from ultralytics.utils.plotting import Annotator  # ultralytics.yolo.utils.plotting is deprecated
 import numpy as np
-
-import time
+import cv2
 import paho.mqtt.client as mqtt
 import random
+import time
+from ultralytics import YOLO
+from ultralytics.utils.plotting import Annotator
 
 model = YOLO('best.pt')
 cap = cv2.VideoCapture(0)
@@ -51,6 +50,7 @@ while True:
                 qos=0,
             )
             info.wait_for_publish()
+            
     img = annotator.result()  
     cv2.imshow('YOLO V8 Detection', img)     
     if cv2.waitKey(1) & 0xFF == ord(' '):
