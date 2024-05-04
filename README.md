@@ -1,4 +1,4 @@
-# Pyrett [Pyro Fighter Turre]🧯
+# Pyrett [Pyro Fighter Turret]🧯
 <p align="justify"> Pyrett is an AI guided water turret fire supression system, which allows for the quick extinguishing of fires within a specified area. Using a combination of YOLOv8 and a gantry mechanism, we were able to create a functional and high precision prototype. </p>
 
 ### Background💡
